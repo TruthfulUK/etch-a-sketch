@@ -8,8 +8,9 @@ This project is for the Etch-a-Sketch challenge on The Odin Project.
 - [ ] Customizable settings
   - [x] Custom grid size (max 100x100)
   - [ ] Select drawing colour
-  - [ ] Rainbow drawing mode
+  - [x] Rainbow drawing mode
 - [x] Reset / clear grid
+- [ ] Eraser
 
 
 ### Credits / Attribution

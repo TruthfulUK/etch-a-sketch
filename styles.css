@@ -1,12 +1,16 @@
+:root {
+    --rainbow-opacity: 0.8;
+}
+
 html {
     box-sizing: border-box;
+    min-height: 100%;
 }
 
 *, *::before, *::after {
     box-sizing: inherit;
     padding: 0;
     margin: 0;
-    /* border: 1px solid rgba(202, 202, 202, 0.486); */
 }
 
 body {
@@ -70,11 +74,44 @@ button {
 }
 
 button + button {
+    margin-left: 15px;
+}
+
+.rainbowAnim {
+    background: linear-gradient(
+        45deg,
+        rgba(255, 0, 0, var(--rainbow-opacity)) 0%,
+        rgba(255, 154, 0, var(--rainbow-opacity)) 10%,
+        rgba(208, 222, 33, var(--rainbow-opacity)) 20%,
+        rgba(79, 220, 74, var(--rainbow-opacity)) 30%,
+        rgba(63, 218, 216, var(--rainbow-opacity)) 40%,
+        rgba(47, 201, 226, var(--rainbow-opacity)) 50%,
+        rgba(28, 127, 238, var(--rainbow-opacity)) 60%,
+        rgba(95, 21, 242, var(--rainbow-opacity)) 70%,
+        rgba(186, 12, 248, var(--rainbow-opacity)) 80%,
+        rgba(251, 7, 217, var(--rainbow-opacity)) 90%,
+        rgba(255, 0, 0, var(--rainbow-opacity)) 100%
+    );
+    color: #ffffff;
+    text-shadow: 1px 2px rgba(0, 0, 0, 0.8);
+    background-size: 400% 400%;
+    animation: gradient 0.5s linear infinite;
+
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 50% 50%;
+    }
+    100% {
+        background-position: 0% 100%;
+    }
 }
 
 button:hover {
-    background: #00806F;
-    color: #9BD572;
     cursor: pointer;
 }
 
@@ -82,9 +119,6 @@ button:hover {
     background: rgba(0, 0, 0, 0.226);
 }
 
-.clr-black {
-    background-color: #000;
-}
 
 input[type="range"] {
     -webkit-appearance: none !important;
@@ -119,6 +153,8 @@ input[type='range']::-webkit-slider-thumb {
 @media (max-width: 768px) {
     .app {
         flex-flow: column nowrap !important;
+        align-items: center;
+        margin: 2rem 2rem;
     }
     .app-sidebar {
         flex-flow: row nowrap !important;
