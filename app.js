@@ -4,10 +4,12 @@ const padCount = selectedSize.value * selectedSize.value;
 const gridPrint = document.querySelector('#grid-print');
 const clearBtn = document.querySelector('#clearpad');
 const rainbowBtn = document.querySelector('#rainbow');
+const eraserBtn = document.querySelector('#eraser');
 
 let squares;
 let mouseIsHeld;
 let rainbowMode = false;
+let eraserMode = false;
 
 function init() {
     
@@ -16,17 +18,12 @@ function init() {
 
 
     // Initialize event listeners on the inputs
-    window.addEventListener('mousedown', () => {
-        setTimeout(() => {
-            mouseIsHeld = true;
-        }, 100)
+    pad.addEventListener('mousedown', () => {
+        mouseIsHeld = true;
     })
 
-    window.addEventListener('mouseup', () => {
-        setTimeout(() => {
-            mouseIsHeld = false;
-        }, 100)
-        
+    pad.addEventListener('mouseup', () => {
+        mouseIsHeld = false;   
     })
 
     selectedSize.addEventListener('change', () => {
@@ -36,7 +33,6 @@ function init() {
 
     clearBtn.addEventListener('click', () => {
         squares.forEach(sq => {
-            sq.classList.remove('clr-black');
             sq.removeAttribute('style');
         })
     });
@@ -44,6 +40,11 @@ function init() {
     rainbowBtn.addEventListener('click', () => {
         rainbowBtn.classList.toggle('rainbowAnim');
         rainbowMode = !rainbowMode;
+    })
+
+    eraserBtn.addEventListener('click', () => {
+        eraserBtn.classList.toggle('enabled');
+        eraserMode = !eraserMode;
     })
 
 }
@@ -67,10 +68,15 @@ function generateListeners(squares) {
     squares.forEach(sq => {
         sq.addEventListener("mouseover", () => {
             if (mouseIsHeld) {
-                if (rainbowMode) {
-                    sq.style.backgroundColor = generateRandomClr();
-                } else {
-                    sq.style.backgroundColor = `#000000`;
+                switch(true) {
+                    case eraserMode:
+                        sq.removeAttribute('style');
+                        break;
+                    case rainbowMode:
+                        sq.style.backgroundColor = generateRandomClr();
+                        break;
+                    default:
+                        sq.style.backgroundColor = `#000000`;
                 }
             }
         })

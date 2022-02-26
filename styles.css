@@ -77,6 +77,11 @@ button + button {
     margin-left: 15px;
 }
 
+button:hover, .enabled {
+    background: #000000;
+    color: #ffffff;
+}
+
 .rainbowAnim {
     background: linear-gradient(
         45deg,
